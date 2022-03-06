@@ -1,0 +1,13 @@
+# Information
+name: MinecraftConsoleController
+main: com.deviseworks.mcc.Main
+version: 1.0.0
+api-version: 1.18
+prefix: MCC
+author: rokuosan
+
+# Commands
+commands:
+  memory:
+    aliases: [mem, showmemem]
+    description: Show JVM heap memory.
