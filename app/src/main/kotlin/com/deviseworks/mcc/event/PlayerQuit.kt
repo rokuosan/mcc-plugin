@@ -1,9 +1,8 @@
 package com.deviseworks.mcc.event
 
-import com.deviseworks.mcc.entity.Player
-import com.deviseworks.mcc.util.Request
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
@@ -16,17 +15,18 @@ class PlayerQuit: Listener {
         // プレイヤー取得
         val player = event.player
 
-        // プレイヤーをデシリアライズ
-        val body = Json.encodeToString(
-            Player(
-                uuid = player.uniqueId.toString(),
-                name = player.name,
-                displayName = player.displayName,
-                isAdmin = player.hasPermission("admin.staff")
-            )
-        )
-
         // POST
-        Request().post("http://localhost:8080/api/player/list/quit", body)
+        val formBody = FormBody.Builder()
+            .add("uuid", player.uniqueId.toString())
+            .build()
+
+        val request = Request.Builder()
+            .url("http://localhost:8080/api/player/quit")
+            .post(formBody)
+            .build()
+
+        OkHttpClient().newCall(request).execute().use { response ->
+            if(!response.isSuccessful) println("POSTできませんでした。")
+        }
     }
 }
