@@ -1,5 +1,6 @@
 package com.deviseworks.mcc.event
 
+import com.deviseworks.mcc.API_URL
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -21,7 +22,7 @@ class PlayerQuit: Listener {
             .build()
 
         val request = Request.Builder()
-            .url("http://localhost:8080/api/player/quit")
+            .url("$API_URL/api/player/quit")
             .post(formBody)
             .build()
 

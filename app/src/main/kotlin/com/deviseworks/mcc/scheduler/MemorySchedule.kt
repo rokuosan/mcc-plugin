@@ -1,5 +1,6 @@
 package com.deviseworks.mcc.scheduler
 
+import com.deviseworks.mcc.API_URL
 import com.deviseworks.mcc.entity.Memory
 import com.deviseworks.mcc.util.Request
 import kotlinx.serialization.json.Json
@@ -23,6 +24,6 @@ class MemorySchedule: BukkitRunnable() {
         // POST
         val json = Json.encodeToString(Memory.serializer(), memory)
 
-        Request().postJSON("http://localhost:8080/api/server/memory", json)
+        Request().postJSON("$API_URL/api/server/memory", json)
     }
 }

@@ -1,5 +1,6 @@
 package com.deviseworks.mcc.event
 
+import com.deviseworks.mcc.API_URL
 import com.deviseworks.mcc.entity.Player
 import com.deviseworks.mcc.entity.PlayerConnection
 import com.deviseworks.mcc.util.Request
@@ -29,6 +30,6 @@ class PlayerJoin: Listener {
         )
 
         // POST
-        Request().postJSON("http://localhost:8080/api/player/join", body)
+        Request().postJSON("${API_URL}/api/player/join", body)
     }
 }
