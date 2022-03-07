@@ -20,7 +20,7 @@ class Request {
      * @param body POSTする内容
      * @param output trueの場合、レスポンスを出力します。
      */
-    fun post(url: String, body: String, output: Boolean = false){
+    fun postJSON(url: String, body: String, output: Boolean = false){
         try{
             val request = Request.Builder()
                 .url(url)
