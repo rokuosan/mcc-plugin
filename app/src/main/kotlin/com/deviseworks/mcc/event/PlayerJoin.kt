@@ -1,6 +1,7 @@
 package com.deviseworks.mcc.event
 
 import com.deviseworks.mcc.entity.Player
+import com.deviseworks.mcc.entity.PlayerConnection
 import com.deviseworks.mcc.util.Request
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -22,11 +23,12 @@ class PlayerJoin: Listener {
                 uuid = player.uniqueId.toString(),
                 name = player.name,
                 displayName = player.displayName,
-                isAdmin = player.hasPermission("admin.staff")
+                isAdmin = player.hasPermission("admin.staff"),
+                status = PlayerConnection.ONLINE.status
             )
         )
 
         // POST
-        Request().post("http://localhost:8080/api/player/list/join", body)
+        Request().postJSON("http://localhost:8080/api/player/join", body)
     }
 }
