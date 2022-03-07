@@ -3,6 +3,7 @@ package com.deviseworks.mcc
 import com.deviseworks.mcc.event.PlayerJoin
 import com.deviseworks.mcc.event.PlayerQuit
 import com.deviseworks.mcc.scheduler.MemorySchedule
+import com.deviseworks.mcc.scheduler.OrderSchedule
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -16,5 +17,6 @@ class Main: JavaPlugin() {
 
         // スケジューラを登録
         MemorySchedule().runTaskTimerAsynchronously(this, 0L, 40L) // 2秒に一回実行
+        OrderSchedule().runTaskTimer(this, 0L, 20L) // 1秒に一回実行
     }
 }
