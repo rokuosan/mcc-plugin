@@ -23,6 +23,6 @@ class MemorySchedule: BukkitRunnable() {
         // POST
         val json = Json.encodeToString(Memory.serializer(), memory)
 
-        Request().post("http://localhost:8080/api/server/memory", json)
+        Request().postJSON("http://localhost:8080/api/server/memory", json)
     }
 }
