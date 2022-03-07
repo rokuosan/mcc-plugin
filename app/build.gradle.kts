@@ -42,6 +42,9 @@ dependencies {
     // OkHTTP
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
 
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation("org.json:json:20211205")
+
     // Spigot API
     compileOnly("org.spigotmc:spigot-api:${mcVersion}-R0.1-SNAPSHOT")
 }
