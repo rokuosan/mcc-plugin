@@ -15,9 +15,17 @@ data class Player(
     var displayName: String? = "",
 
     @SerialName("admin_flag")
-    var isAdmin: Boolean = false
+    var isAdmin: Boolean = false,
+
+    @SerialName("status")
+    var status: String = PlayerConnection.OFFLINE.status
 )
 
+enum class PlayerConnection(val status: String) {
+    ONLINE("ONLINE"),
+    OFFLINE("OFFLINE"),
+    AFK("AFK");
+}
 /*
 Expected JSON Example:
 {
