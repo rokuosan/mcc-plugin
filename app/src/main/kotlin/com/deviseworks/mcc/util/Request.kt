@@ -1,15 +1,22 @@
 package com.deviseworks.mcc.util
 
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.features.json.*
+import io.ktor.client.features.json.serializer.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import kotlinx.coroutines.runBlocking
 import org.bukkit.ChatColor
-import java.io.IOException
 
 class Request {
-    companion object{
-        val MediaType_JSON = "application/json; charset=utf-8".toMediaType()
+
+    // Ktor クライアント
+    private val client = HttpClient(CIO){
+        install(JsonFeature){
+            serializer=KotlinxSerializer()
+        }
     }
 
     /**
@@ -17,21 +24,18 @@ class Request {
      * ヘッダー情報などの操作はできないので注意してください。
      *
      * @param url POSTするURL
-     * @param body POSTする内容
+     * @param json POSTする内容
      * @param output trueの場合、レスポンスを出力します。
      */
-    fun postJSON(url: String, body: String, output: Boolean = false){
+    fun postJSON(url: String, json: String, output: Boolean = false) = runBlocking{
         try{
-            val request = Request.Builder()
-                .url(url)
-                .post(body.toRequestBody(MediaType_JSON))
-                .build()
+            val response: HttpResponse = client.post(url){
+                body = json
+            }
 
-            OkHttpClient().newCall(request).execute().use { response ->
-                if(!response.isSuccessful){
-                    throw IOException("Unexpected code $response")
-                }
-                if(output) println(response.body!!.string())
+            if(output){
+                val body: String = response.receive()
+                println(body)
             }
         }catch(e: Exception){
             println("${ChatColor.RED}[POST:ERROR] ${ChatColor.RESET}POSTに失敗しました。(URL: $url)")
