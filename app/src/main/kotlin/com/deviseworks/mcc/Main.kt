@@ -17,6 +17,6 @@ class Main: JavaPlugin() {
 
         // スケジューラを登録
         MemorySchedule().runTaskTimerAsynchronously(this, 0L, 40L) // 2秒に一回実行
-        OrderSchedule().runTaskTimer(this, 0L, 20L) // 1秒に一回実行
+        OrderSchedule(this).runTaskTimer(this, 0L, 20L) // 1秒に一回実行
     }
 }
