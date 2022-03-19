@@ -26,6 +26,7 @@ group = "com.deviseworks"
 version = "1.0-SNAPSHOT"
 java.sourceCompatibility=JavaVersion.VERSION_17
 val mcVersion = "1.18.1"
+val ktorVersion = "1.6.8"
 
 
 dependencies {
@@ -39,11 +40,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
-    // OkHTTP
-    implementation("com.squareup.okhttp3:okhttp:4.9.3")
-
-    // https://mvnrepository.com/artifact/org.json/json
-    implementation("org.json:json:20211205")
+    // Ktor Client
+    implementation("io.ktor:ktor-client-core:$ktorVersion")
+    implementation("io.ktor:ktor-client-cio:$ktorVersion")
+    implementation("io.ktor:ktor-client-serialization:$ktorVersion")
 
     // Spigot API
     compileOnly("org.spigotmc:spigot-api:${mcVersion}-R0.1-SNAPSHOT")
