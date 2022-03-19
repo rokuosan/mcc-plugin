@@ -2,16 +2,16 @@ package com.deviseworks.mcc.common
 
 object Endpoint {
     // Base
-    val Base = "https://api-rokuosan.cloud.okteto.net/api/"
+    private const val Base = "https://api-rokuosan.cloud.okteto.net/api/"
 
 
     // Server
-    private val Server = "$Base/server"
-    val Memory = "$Server/memory"
-    val Order = "$Server/order"
+    private const val Server = "$Base/server"
+    const val Memory = "$Server/memory"
+    const val Order = "$Server/order"
 
 
     // Player
-    val Player = "$Base/player"
+    const val Player = "$Base/player"
 
 }
