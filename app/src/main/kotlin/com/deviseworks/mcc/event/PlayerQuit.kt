@@ -1,10 +1,7 @@
 package com.deviseworks.mcc.event
 
 import com.deviseworks.mcc.API_URL
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
+import com.deviseworks.mcc.common.client
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
@@ -15,13 +12,6 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerQuitEvent
 
 class PlayerQuit: Listener {
-
-    // Ktor クライアント
-    private val client = HttpClient(CIO){
-        install(JsonFeature){
-            serializer=KotlinxSerializer()
-        }
-    }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     fun postLeftPlayer(event: PlayerQuitEvent){

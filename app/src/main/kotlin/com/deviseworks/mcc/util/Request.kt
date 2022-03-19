@@ -1,24 +1,13 @@
 package com.deviseworks.mcc.util
 
-import io.ktor.client.*
+import com.deviseworks.mcc.common.client
 import io.ktor.client.call.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.coroutines.runBlocking
 import org.bukkit.ChatColor
 
 class Request {
-
-    // Ktor クライアント
-    private val client = HttpClient(CIO){
-        install(JsonFeature){
-            serializer=KotlinxSerializer()
-        }
-    }
-
     /**
      * JSONを丸ごとPOSTする関数。
      * ヘッダー情報などの操作はできないので注意してください。
