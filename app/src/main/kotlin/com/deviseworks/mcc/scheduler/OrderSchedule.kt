@@ -1,6 +1,6 @@
 package com.deviseworks.mcc.scheduler
 
-import com.deviseworks.mcc.API_URL
+import com.deviseworks.mcc.common.Endpoint
 import com.deviseworks.mcc.common.client
 import com.deviseworks.mcc.entity.Order
 import io.ktor.client.request.*
@@ -50,14 +50,14 @@ class OrderSchedule(private val plugin: JavaPlugin): BukkitRunnable() {
 
     private fun fetchOrder() = runBlocking<List<Order>?> {
         try {
-            client.get("$API_URL/api/server/order")
+            client.get(Endpoint.Order)
         }catch(e: Exception){
             null
         }
     }
 
     private fun doneOrder(order: Order) = runBlocking<HttpResponse> {
-        client.post("$API_URL/api/server/order/done"){
+        client.post("${Endpoint.Order}/done"){
             parameter("id", order.id)
         }
     }

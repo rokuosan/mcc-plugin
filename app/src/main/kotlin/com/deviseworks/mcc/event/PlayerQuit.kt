@@ -1,6 +1,6 @@
 package com.deviseworks.mcc.event
 
-import com.deviseworks.mcc.API_URL
+import com.deviseworks.mcc.common.Endpoint
 import com.deviseworks.mcc.common.client
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -20,7 +20,7 @@ class PlayerQuit: Listener {
 
         // POST
         val response = runBlocking<HttpResponse>{
-            client.post("${API_URL}/api/player/quit"){
+            client.post("${Endpoint.Player}/quit"){
                 parameter("uuid", player.uniqueId.toString())
             }
         }

@@ -7,8 +7,6 @@ import com.deviseworks.mcc.scheduler.OrderSchedule
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
-const val API_URL = "http://localhost:8080"
-
 class Main: JavaPlugin() {
     override fun onEnable() {
         // EventListenerを登録
